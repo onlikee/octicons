@@ -23,14 +23,14 @@ npm install octicons-vue3
 
 ```vue
 <script setup lang="ts">
-import { MarkGithub, X } from 'octicons-vue3'
-import Accessibility from 'octicons-vue3/icons/accessibility'
+import { MarkGithubIcon, XIcon } from 'octicons-vue3'
+import AccessibilityIcon from 'octicons-vue3/icons/accessibility'
 </script>
 
 <template>
-  <MarkGithub />
-  <X :size="20" color="#cf222e" />
-  <Accessibility size="1.25em" />
+  <MarkGithubIcon />
+  <XIcon :size="20" color="#cf222e" />
+  <AccessibilityIcon size="1.25em" />
 </template>
 ```
 
@@ -43,16 +43,16 @@ Each icon accepts:
 
 ## Imports
 
-Named imports are available from the package root:
+Named imports with the `Icon` suffix are available from the package root:
 
 ```ts
-import { Check, X, MarkGithub } from 'octicons-vue3'
+import { CheckIcon, XIcon, MarkGithubIcon } from 'octicons-vue3'
 ```
 
 Deep imports are available for individual icons:
 
 ```ts
-import Check from 'octicons-vue3/icons/check'
+import CheckIcon from 'octicons-vue3/icons/check'
 ```
 
 ## Contributing
