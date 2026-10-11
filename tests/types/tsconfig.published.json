@@ -1,0 +1,5 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": { "paths": {} },
+  "include": ["published.vue", "published.ts"]
+}

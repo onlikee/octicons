@@ -1,0 +1,62 @@
+{
+  "name": "@onlikee/octicons-vue",
+  "version": "3.0.0",
+  "description": "Vue 3 components for GitHub Primer Octicons.",
+  "type": "module",
+  "license": "MIT",
+  "author": "UnderHear",
+  "homepage": "https://github.com/onlikee/octicons-vue#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onlikee/octicons-vue.git",
+    "directory": "packages/octicons-vue"
+  },
+  "bugs": {
+    "url": "https://github.com/onlikee/octicons-vue/issues"
+  },
+  "keywords": [
+    "octicons",
+    "github",
+    "primer",
+    "icons",
+    "vue",
+    "vue3",
+    "components"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./icons/*": {
+      "types": "./dist/__generated__/icons/*.d.ts",
+      "import": "./dist/icons/*.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "typecheck": "node ../../scripts/generate.mjs && vue-tsc --noEmit -p tsconfig.json",
+    "build": "node ../../scripts/generate.mjs && vite build",
+    "prepack": "npm run typecheck && npm run build"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@onlikee/octicons": "^1.0.0"
+  }
+}

@@ -1,74 +1,72 @@
-![octicons cover light](https://user-images.githubusercontent.com/54012/138925195-5779c51d-ff8c-4264-a914-e64f4843893d.png#gh-light-mode-only)
-![octicons cover dark](https://user-images.githubusercontent.com/54012/138925203-80e1afa1-ba54-4731-9525-3c41186663f9.png#gh-dark-mode-only)
-<br>
-<br>
-<h1 align="center">Octicons-Vue</h1>
+# Onlikee Octicons
 
-<p align="center">
-This icon component library is the Vue 3 version of <a href="https://github.com/primer/octicons">Octicons</a>.<br>
-Requires Vue 3.3 or later.
-</p>
+Framework-independent SVG data and a Vue 3 adapter for GitHub Primer Octicons.
 
-<p align="center">
-English | <a href="./README.zh-CN.md">简体中文</a>
-</p>
+English | [简体中文](./README.zh-CN.md)
 
-## Install
+## Packages
+
+| Package | Description | Documentation |
+| --- | --- | --- |
+| `@onlikee/octicons` | SVG data, string and native DOM rendering, original SVG assets | [Core](./packages/octicons/README.md) |
+| `@onlikee/octicons-vue` | Vue 3.3+ icon components | [Vue](./packages/octicons-vue/README.md) |
+
+Install the package you use:
 
 ```sh
+npm install @onlikee/octicons
 npm install @onlikee/octicons-vue
 ```
 
-## Usage
+The display height defaults to 16. Sizes accept numbers or `small`, `medium`, `large` (16, 32, 64). Rendering selects the largest available natural drawing at or below the requested height, or the smallest drawing for smaller requests; width scales proportionally.
 
-```vue
-<script setup lang="ts">
-import { MarkGithubIcon, XIcon } from '@onlikee/octicons-vue'
-import AccessibilityIcon from '@onlikee/octicons-vue/icons/accessibility'
-</script>
+## Repository layout
 
-<template>
-  <MarkGithubIcon />
-  <XIcon :size="20" color="#cf222e" />
-  <AccessibilityIcon size="1.25em" />
-</template>
+```text
+icons/                             Original SVGs, metadata, source record and upstream license
+scripts/                           Synchronization, validation, generation and SVG asset build
+packages/
+  octicons/
+    src/                           Types, size selection and native rendering
+    src/__generated__/             Generated icon data and exports
+    dist/                          Published JavaScript, declarations and SVG assets
+  octicons-vue/
+    src/                           Vue component factory and types
+    src/__generated__/             Generated components and exports
+    dist/                          Published JavaScript and declarations
+tests/                             Runtime, template types, consumer bundles and browser checks
 ```
 
-Each icon accepts:
+The root package is private and manages npm workspaces. Generated TypeScript modules in `src/__generated__/`, package attribution copies and `dist/` are ignored by Git. Builds and type checks generate the required source automatically; tests build both packages first. `npm run generate:check` compares existing generated files without rewriting them. Public root and `icons/<name>` imports remain available in both packages; the core also exports `svg/<name>-<height>.svg` assets.
 
-| Prop | Type | Default |
-| --- | --- | --- |
-| `size` | `number \| string` | `16` |
-| `color` | `string` | `currentColor` |
+## Development
 
-## Imports
+Use Node 22.12 or later for the Vite 7 development tools. Run commands from the repository root:
 
-Named imports with the `Icon` suffix are available from the package root:
-
-```ts
-import { CheckIcon, XIcon, MarkGithubIcon } from '@onlikee/octicons-vue'
+```sh
+npm install
+npm run typecheck
+npm run build
+npm test
 ```
 
-Deep imports are available for individual icons:
+Refresh the upstream snapshot explicitly, then regenerate:
 
-```ts
-import CheckIcon from '@onlikee/octicons-vue/icons/check'
+```sh
+npm run sync:octicons -- --source <octicons checkout>
+npm run generate
+npm run generate:check
 ```
 
-## Contributing
+`icons/icon-metadata.json` defines aliases and protected geometry. `icons/upstream.json` records the source version and commit; `icons/LICENSE.octicons` contains the upstream MIT license. The snapshot contains 397 canonical names and three aliases from Octicons 19.40.0, commit `97825f832c98f817867f770d084c08e3edc6f78c`.
 
-Contributions are welcome! Feel free to add or update icons, but please ensure that any additions follow the Octicons visual guidelines.
+Run `npm run test:browser` and open the printed URL for browser verification. Build the core before building the Vue package separately. To inspect each publishable package:
 
-If you notice anything that could be improved, please open an issue.
-
-## Thanks
-
-This project is built upon the open-source [Octicons](https://github.com/primer/octicons) project, with approximately 98% of the icon SVGs sourced from [Octicons/icons](https://github.com/primer/octicons/tree/main/icons).
-
-I would like to sincerely thank the designers, GitHub, and the Primer team for their incredible work in creating and maintaining such a thoughtful, clear, and reliable visual language for developers.
+```sh
+npm pack --dry-run --workspace=@onlikee/octicons
+npm pack --dry-run --workspace=@onlikee/octicons-vue
+```
 
 ## License and attribution
 
-This package is released under the MIT license.
-
-The icon path data is based on GitHub Primer Octicons, which is MIT licensed. See `NOTICE` for attribution details.
+MIT licensed. Icon graphics originate from [GitHub Primer Octicons](https://github.com/primer/octicons). See `LICENSE`, `icons/LICENSE.octicons` and `NOTICE`.
