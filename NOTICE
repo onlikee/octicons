@@ -1,4 +1,4 @@
-octicons-vue3
+@onlikee/octicons-vue
 
 This package includes Vue components generated from or based on GitHub Primer
 Octicons icon path data.

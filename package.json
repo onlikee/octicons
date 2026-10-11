@@ -1,17 +1,17 @@
 {
-  "name": "octicons-vue3",
+  "name": "@onlikee/octicons-vue",
   "version": "2.0.2",
   "description": "Vue 3 components for GitHub Primer Octicons.",
   "type": "module",
   "license": "MIT",
   "author": "UnderHear",
-  "homepage": "https://github.com/UnderHear/octicons-vue3#readme",
+  "homepage": "https://github.com/onlikee/octicons-vue#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UnderHear/octicons-vue3.git"
+    "url": "git+https://github.com/onlikee/octicons-vue.git"
   },
   "bugs": {
-    "url": "https://github.com/UnderHear/octicons-vue3/issues"
+    "url": "https://github.com/onlikee/octicons-vue/issues"
   },
   "keywords": [
     "octicons",

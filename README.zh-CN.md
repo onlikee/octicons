@@ -2,7 +2,7 @@
 ![octicons cover dark](https://user-images.githubusercontent.com/54012/138925203-80e1afa1-ba54-4731-9525-3c41186663f9.png#gh-dark-mode-only)
 <br>
 <br>
-<h1 align="center">Octicons-Vue3</h1>
+<h1 align="center">Octicons-Vue</h1>
 
 <p align="center">
 这是 <a href="https://github.com/primer/octicons">Octicons</a> 的 Vue 3 版本图标组件库。<br>
@@ -16,15 +16,15 @@
 ## 安装
 
 ```sh
-npm install octicons-vue3
+npm install @onlikee/octicons-vue
 ```
 
 ## 使用
 
 ```vue
 <script setup lang="ts">
-import { MarkGithubIcon, XIcon } from 'octicons-vue3'
-import AccessibilityIcon from 'octicons-vue3/icons/accessibility'
+import { MarkGithubIcon, XIcon } from '@onlikee/octicons-vue'
+import AccessibilityIcon from '@onlikee/octicons-vue/icons/accessibility'
 </script>
 
 <template>
@@ -46,13 +46,13 @@ import AccessibilityIcon from 'octicons-vue3/icons/accessibility'
 可以从包根路径按带 `Icon` 后缀的名称进行命名导入：
 
 ```ts
-import { CheckIcon, XIcon, MarkGithubIcon } from 'octicons-vue3'
+import { CheckIcon, XIcon, MarkGithubIcon } from '@onlikee/octicons-vue'
 ```
 
 也可以按需深度导入单个图标：
 
 ```ts
-import CheckIcon from 'octicons-vue3/icons/check'
+import CheckIcon from '@onlikee/octicons-vue/icons/check'
 ```
 
 ## 贡献

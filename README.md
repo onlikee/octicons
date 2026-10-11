@@ -2,7 +2,7 @@
 ![octicons cover dark](https://user-images.githubusercontent.com/54012/138925203-80e1afa1-ba54-4731-9525-3c41186663f9.png#gh-dark-mode-only)
 <br>
 <br>
-<h1 align="center">Octicons-Vue3</h1>
+<h1 align="center">Octicons-Vue</h1>
 
 <p align="center">
 This icon component library is the Vue 3 version of <a href="https://github.com/primer/octicons">Octicons</a>.<br>
@@ -16,15 +16,15 @@ English | <a href="./README.zh-CN.md">简体中文</a>
 ## Install
 
 ```sh
-npm install octicons-vue3
+npm install @onlikee/octicons-vue
 ```
 
 ## Usage
 
 ```vue
 <script setup lang="ts">
-import { MarkGithubIcon, XIcon } from 'octicons-vue3'
-import AccessibilityIcon from 'octicons-vue3/icons/accessibility'
+import { MarkGithubIcon, XIcon } from '@onlikee/octicons-vue'
+import AccessibilityIcon from '@onlikee/octicons-vue/icons/accessibility'
 </script>
 
 <template>
@@ -46,13 +46,13 @@ Each icon accepts:
 Named imports with the `Icon` suffix are available from the package root:
 
 ```ts
-import { CheckIcon, XIcon, MarkGithubIcon } from 'octicons-vue3'
+import { CheckIcon, XIcon, MarkGithubIcon } from '@onlikee/octicons-vue'
 ```
 
 Deep imports are available for individual icons:
 
 ```ts
-import CheckIcon from 'octicons-vue3/icons/check'
+import CheckIcon from '@onlikee/octicons-vue/icons/check'
 ```
 
 ## Contributing
