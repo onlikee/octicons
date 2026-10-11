@@ -27,15 +27,17 @@ document.body.appendChild(element)
 
 `toSVG(icon, options?)` returns a string with escaped attribute values and title text. `createElement(icon, options?, document?)` returns an `SVGSVGElement`; supply a document explicitly when using another document. Without a DOM, use `toSVG()` instead.
 
-| Option | Type | Default |
-| --- | --- | --- |
-| `size` | `number \| 'small' \| 'medium' \| 'large'` | `16` |
-| `fill` | `string` | `currentColor` |
-| `title` | `string` | none |
-| `verticalAlign` | `string` | `text-bottom` |
-| `attrs` | SVG attribute values: string, number, boolean, null or undefined | none |
+| Option          | Type                                                             | Default        |
+| --------------- | ---------------------------------------------------------------- | -------------- |
+| `size`          | `number \| 'small' \| 'medium' \| 'large'`                       | `16`           |
+| `fill`          | `string`                                                         | `currentColor` |
+| `title`         | `string`                                                         | none           |
+| `verticalAlign` | `string`                                                         | `text-bottom`  |
+| `attrs`         | SVG attribute values: string, number, boolean, null or undefined | none           |
 
 Use standard SVG names in `attrs`, such as `tabindex` and `aria-label`. Attribute values of null or undefined are omitted. Pass `style` as CSS text; it overrides the default vertical alignment. Size-derived width, height and viewBox take precedence over `attrs`. Use the `fill` option for fill, and attach events with `addEventListener()`.
+
+The `fill` option and CSS `fill` on the root SVG control the icon's fill; CSS `fill` takes precedence over the attribute. Without an override, the default `currentColor` follows CSS `color`. Paths with an explicit `fill="currentColor"`, including Flag and Vscode, render with `fill="inherit"` so they follow the root fill. Original SVG assets and exported icon data retain their source attributes; `none` and fixed child fill colors remain unchanged.
 
 Icons default to hidden from assistive technology. `aria-label` or `aria-labelledby` removes the default hidden attribute and sets `role="img"`, unless explicitly hidden. A title alone does not change this behavior. A nonnegative tabindex sets `focusable="true"`.
 

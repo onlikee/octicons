@@ -9,31 +9,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": [
-      "ES2018",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2018", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "declaration": true,
     "declarationMap": false,
     "emitDeclarationOnly": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "paths": {
-      "@onlikee/octicons-vue": [
-        "./packages/octicons-vue/src/index.ts"
-      ],
-      "@onlikee/octicons-vue/icons/*": [
-        "./packages/octicons-vue/src/__generated__/icons/*"
-      ],
-      "@onlikee/octicons": [
-        "./packages/octicons/src/index.ts"
-      ],
-      "@onlikee/octicons/icons/*": [
-        "./packages/octicons/src/__generated__/icons/*"
-      ]
+      "@onlikee/octicons-vue": ["./packages/octicons-vue/src/index.ts"],
+      "@onlikee/octicons-vue/icons/*": ["./packages/octicons-vue/src/__generated__/icons/*"],
+      "@onlikee/octicons": ["./packages/octicons/src/index.ts"],
+      "@onlikee/octicons/icons/*": ["./packages/octicons/src/__generated__/icons/*"]
     }
   },
   "include": [

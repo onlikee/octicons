@@ -6,10 +6,10 @@ GitHub Primer Octicons 的框架无关 SVG 数据与 Vue 3 适配包。
 
 ## 发布包
 
-| 包 | 用途 | 文档 |
-| --- | --- | --- |
-| `@onlikee/octicons` | SVG 数据、字符串与原生 DOM 渲染、原始 SVG 资源 | [核心包](./packages/octicons/README.zh-CN.md) |
-| `@onlikee/octicons-vue` | Vue 3.3 及以上版本的图标组件 | [Vue 包](./packages/octicons-vue/README.zh-CN.md) |
+| 包                      | 用途                                           | 文档                                              |
+| ----------------------- | ---------------------------------------------- | ------------------------------------------------- |
+| `@onlikee/octicons`     | SVG 数据、字符串与原生 DOM 渲染、原始 SVG 资源 | [核心包](./packages/octicons/README.zh-CN.md)     |
+| `@onlikee/octicons-vue` | Vue 3.3 及以上版本的图标组件                   | [Vue 包](./packages/octicons-vue/README.zh-CN.md) |
 
 安装需要使用的包：
 
@@ -24,7 +24,7 @@ npm install @onlikee/octicons-vue
 
 ```text
 icons/                             原始 SVG、元数据、来源记录与上游许可证
-scripts/                           同步、校验、生成与 SVG 资源构建
+scripts/                           校验、生成与 SVG 资源构建
 packages/
   octicons/
     src/                           类型、尺寸选择与原生渲染
@@ -41,19 +41,22 @@ tests/                             运行时、模板类型、消费端打包与
 
 ## 开发
 
-Vite 7 开发工具需要 Node 22.12 或更高版本。在仓库根目录执行：
+ESLint 10 与 Vite 7 开发工具需要 Node 22.13 或更高版本。在仓库根目录执行：
 
 ```sh
 npm install
+npm run lint
+npm run format:check
 npm run typecheck
 npm run build
 npm test
 ```
 
-显式更新上游快照，再重新生成：
+ESLint 检查 JavaScript、TypeScript 和 Vue 文件；Prettier 单独检查格式。使用 `npm run lint:fix` 或 `npm run format` 自动修复。生成文件、构建产物与上游图标快照排除检查。已有文件可能存在格式差异；`endOfLine: auto` 保留工作区原有换行符。
+
+根据仓库内的图标快照重新生成源码：
 
 ```sh
-npm run sync:octicons -- --source <octicons checkout>
 npm run generate
 npm run generate:check
 ```

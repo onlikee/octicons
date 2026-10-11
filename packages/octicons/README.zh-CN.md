@@ -25,15 +25,17 @@ document.body.appendChild(element)
 
 `toSVG(icon, options?)` 返回正确转义属性值和标题的 SVG 字符串。`createElement(icon, options?, document?)` 返回 `SVGSVGElement`，可传入其他文档；没有 DOM 时使用 `toSVG()`。
 
-| 选项 | 类型 | 默认值 |
-| --- | --- | --- |
-| `size` | `number \| 'small' \| 'medium' \| 'large'` | `16` |
-| `fill` | `string` | `currentColor` |
-| `title` | `string` | 无 |
-| `verticalAlign` | `string` | `text-bottom` |
-| `attrs` | SVG 属性值：字符串、数字、布尔值、null 或 undefined | 无 |
+| 选项            | 类型                                                | 默认值         |
+| --------------- | --------------------------------------------------- | -------------- |
+| `size`          | `number \| 'small' \| 'medium' \| 'large'`          | `16`           |
+| `fill`          | `string`                                            | `currentColor` |
+| `title`         | `string`                                            | 无             |
+| `verticalAlign` | `string`                                            | `text-bottom`  |
+| `attrs`         | SVG 属性值：字符串、数字、布尔值、null 或 undefined | 无             |
 
 `attrs` 使用标准 SVG 属性名，例如 `tabindex`、`aria-label`。null、undefined 不输出；`style` 使用 CSS 文本，可覆盖默认垂直对齐。尺寸计算得到的宽高和 viewBox 优先于 `attrs`，填充色通过 `fill` 选项设置。事件使用 `addEventListener()` 绑定。
+
+`fill` 选项与根 SVG 的 CSS `fill` 控制图标填充色；CSS `fill` 优先于属性。未覆盖填充色时，默认 `currentColor` 跟随 CSS `color`。Flag、Vscode 等带有显式 `fill="currentColor"` 的路径在渲染输出中使用 `fill="inherit"`，从而继承根 SVG 的填充色。原始 SVG 资源和导出的图标数据保留源属性；子节点的 `none` 与固定填充色保持不变。
 
 默认向辅助技术隐藏图标。提供 `aria-label` 或 `aria-labelledby` 后取消默认隐藏并设置 `role="img"`，但显式隐藏设置优先。仅提供标题不改变隐藏状态。非负 tabindex 会设置 `focusable="true"`。
 

@@ -36,16 +36,18 @@ import AccessibilityIcon from '@onlikee/octicons-vue/icons/accessibility'
 
 每个图标组件都支持以下属性：
 
-| 属性 | 类型 | 默认值 |
-| --- | --- | --- |
-| `size` | `number \| 'small' \| 'medium' \| 'large'` | `16` |
-| `fill` | `string` | `currentColor` |
-| `title` | `string` | 无 |
-| `verticalAlign` | CSS 垂直对齐 | `text-bottom` |
+| 属性            | 类型                                       | 默认值         |
+| --------------- | ------------------------------------------ | -------------- |
+| `size`          | `number \| 'small' \| 'medium' \| 'large'` | `16`           |
+| `fill`          | `string`                                   | `currentColor` |
+| `title`         | `string`                                   | 无             |
+| `verticalAlign` | CSS 垂直对齐                               | `text-bottom`  |
 
 `size` 为显示高度，宽度按比例计算。选择不超过目标高度的最大原始图稿；目标小于所有原始尺寸时使用最小图稿。`small`、`medium`、`large` 分别为 16、32、64，仅选择图标实际提供的尺寸。
 
 支持标准 Vue SVG 属性、类名、样式与事件。默认类名为 `octicon octicon-<名称>`，输出 `data-component="Octicon"`。`aria-label` 或 `aria-labelledby` 决定默认隐藏状态与角色，显式 `aria-hidden` 优先。非负 `tabindex` 使 SVG 可聚焦。`title` 添加标题节点，但不会自动改变隐藏状态。调用方样式可覆盖默认垂直对齐；尺寸计算得到的宽高和 viewBox 优先于传入属性。标准 SVG `color` 设置 CSS 颜色，显式填充色使用 `fill`。
+
+`fill` 属性与根 SVG 的 CSS `fill` 控制图标填充色；CSS `fill` 优先于属性。未覆盖填充色时，默认 `currentColor` 跟随 CSS `color`。FlagIcon、VscodeIcon 等带有显式 `fill="currentColor"` 的路径在渲染输出中使用 `fill="inherit"`，从而继承根 SVG 的填充色。原始 SVG 资源和导出的图标数据保留源属性；子节点的 `none` 与固定填充色保持不变。
 
 ## 导入方式
 
@@ -63,7 +65,7 @@ import CheckIcon from '@onlikee/octicons-vue/icons/check'
 
 ## 框架无关核心包
 
-`@onlikee/octicons` 提供 SVG 数据、`toSVG()`、`createElement()` 和原始 SVG 资源，不依赖框架运行时。详见[核心包文档](https://github.com/onlikee/octicons-vue/blob/main/packages/octicons/README.zh-CN.md)。
+`@onlikee/octicons` 提供 SVG 数据、`toSVG()`、`createElement()` 和原始 SVG 资源，不依赖框架运行时。详见[核心包文档](https://github.com/onlikee/octicons/blob/main/packages/octicons/README.zh-CN.md)。
 
 ## 开发
 
@@ -76,7 +78,7 @@ npm run build
 npm test
 ```
 
-运行 `npm run test:browser` 并打开输出的本地地址进行浏览器验证。更新上游快照时运行 `npm run sync:octicons -- --source <octicons checkout>`，随后执行 `npm run generate`。生成模块不纳入 Git；构建和类型检查自动生成源码，测试先构建两个包。`npm run generate:check` 用于只读比较已有生成结果。
+运行 `npm run test:browser` 并打开输出的本地地址进行浏览器验证。生成模块不纳入 Git；构建和类型检查自动生成源码，测试先构建两个包。`npm run generate:check` 用于只读比较已有生成结果。
 
 原始 SVG 存放在根目录 `icons/`；`icons/icon-metadata.json` 保存别名与受保护图形信息，`icons/upstream.json` 记录来源版本和提交，`icons/LICENSE.octicons` 保存上游许可证。
 

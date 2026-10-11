@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.published.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "skipLibCheck": false,
+    "types": []
+  },
+  "include": ["published.ts"]
+}

@@ -6,13 +6,16 @@
   "author": "UnderHear",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onlikee/octicons-vue.git"
+    "url": "git+https://github.com/onlikee/octicons.git"
   },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "sync:octicons": "node scripts/sync-octicons.mjs",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "generate": "node scripts/generate.mjs",
     "generate:check": "node scripts/generate.mjs --check",
     "typecheck": "npm run typecheck --workspaces && vue-tsc --noEmit -p tsconfig.json",
@@ -22,15 +25,22 @@
     "pretest": "npm run build"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^24.3.0",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.11.1",
+    "globals": "^17.13.0",
+    "prettier": "3.9.10",
+    "svgson": "5.2.1",
     "typescript": "^5.9.2",
+    "typescript-eslint": "^8.71.1",
     "vite": "^7.1.2",
-    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-dts": "^5.1.2",
     "vue": "^3.5.18",
-    "vue-tsc": "^3.0.5",
-    "svgson": "5.2.1"
+    "vue-tsc": "^3.0.5"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22.13.0"
   }
 }

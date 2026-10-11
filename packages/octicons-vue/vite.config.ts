@@ -33,7 +33,8 @@ export default defineConfig({
       fileName: (_format, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
-      external: (id) => id === 'vue' || id === '@onlikee/octicons' || id.startsWith('@onlikee/octicons/'),
+      external: (id) =>
+        id === 'vue' || id === '@onlikee/octicons' || id.startsWith('@onlikee/octicons/'),
       output: {
         exports: 'named',
       },

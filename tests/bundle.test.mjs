@@ -18,10 +18,21 @@ for (const target of ['core', 'vue']) {
         rollupOptions: { external: ['vue'] },
       },
     })
-    const outputs = (Array.isArray(result) ? result : [result]).flatMap((item) => item.output).filter((item) => item.type === 'chunk')
-    const modules = outputs.flatMap((item) => Object.keys(item.modules)).map((id) => id.replaceAll('\\', '/'))
-    assert.ok(modules.some((id) => id.includes('/icons/accessibility-inset')), 'selected icon is present')
-    assert.equal(modules.some((id) => /\/icons\/(?!accessibility-inset(?:[.-]|$))/.test(id)), false, modules.filter((id) => id.includes('/icons/')).join('\n'))
+    const outputs = (Array.isArray(result) ? result : [result])
+      .flatMap((item) => item.output)
+      .filter((item) => item.type === 'chunk')
+    const modules = outputs
+      .flatMap((item) => Object.keys(item.modules))
+      .map((id) => id.replaceAll('\\', '/'))
+    assert.ok(
+      modules.some((id) => id.includes('/icons/accessibility-inset')),
+      'selected icon is present',
+    )
+    assert.equal(
+      modules.some((id) => /\/icons\/(?!accessibility-inset(?:[.-]|$))/.test(id)),
+      false,
+      modules.filter((id) => id.includes('/icons/')).join('\n'),
+    )
     const code = outputs.map((item) => item.code).join('\n')
     assert.equal(code.includes('octicon-agent'), false)
     assert.equal(code.includes('octicon-copilot'), false)

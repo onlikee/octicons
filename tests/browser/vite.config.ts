@@ -4,7 +4,11 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   root: fileURLToPath(new URL('.', import.meta.url)),
   resolve: {
-    alias: { '@onlikee/octicons-vue': fileURLToPath(new URL('../../packages/octicons-vue/dist/index.js', import.meta.url)) },
+    alias: {
+      '@onlikee/octicons-vue': fileURLToPath(
+        new URL('../../packages/octicons-vue/dist/index.js', import.meta.url),
+      ),
+    },
   },
   define: {
     __VUE_OPTIONS_API__: true,

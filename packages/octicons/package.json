@@ -7,7 +7,7 @@
   "author": "UnderHear",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onlikee/octicons-vue.git",
+    "url": "git+https://github.com/onlikee/octicons.git",
     "directory": "packages/octicons"
   },
   "sideEffects": false,

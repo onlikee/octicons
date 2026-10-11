@@ -36,16 +36,18 @@ import AccessibilityIcon from '@onlikee/octicons-vue/icons/accessibility'
 
 Each icon accepts:
 
-| Prop | Type | Default |
-| --- | --- | --- |
-| `size` | `number \| 'small' \| 'medium' \| 'large'` | `16` |
-| `fill` | `string` | `currentColor` |
-| `title` | `string` | none |
-| `verticalAlign` | CSS vertical alignment | `text-bottom` |
+| Prop            | Type                                       | Default        |
+| --------------- | ------------------------------------------ | -------------- |
+| `size`          | `number \| 'small' \| 'medium' \| 'large'` | `16`           |
+| `fill`          | `string`                                   | `currentColor` |
+| `title`         | `string`                                   | none           |
+| `verticalAlign` | CSS vertical alignment                     | `text-bottom`  |
 
 Size is the display height; width scales proportionally. Select the largest available natural drawing at or below the requested height, or the smallest drawing for smaller requests. `small`, `medium` and `large` mean 16, 32 and 64. Only actual available drawings are selected.
 
 Standard Vue SVG attributes, classes, styles and events are supported. The default class is `octicon octicon-<name>`; output includes `data-component="Octicon"`. Labels (`aria-label` or `aria-labelledby`) control the default hidden state and role; explicit `aria-hidden` takes precedence. A nonnegative `tabindex` makes the SVG focusable. `title` adds a title element without automatically labelling the icon. Styles override the default vertical alignment. Size-derived width, height and viewBox take precedence over passed attributes. Standard SVG `color` sets CSS color; use `fill` to set fill explicitly.
+
+The `fill` prop and CSS `fill` on the root SVG control the icon's fill; CSS `fill` takes precedence over the attribute. Without an override, the default `currentColor` follows CSS `color`. Paths with an explicit `fill="currentColor"`, including FlagIcon and VscodeIcon, render with `fill="inherit"` so they follow the root fill. Original SVG assets and exported icon data retain their source attributes; `none` and fixed child fill colors remain unchanged.
 
 ## Imports
 
@@ -63,7 +65,7 @@ import CheckIcon from '@onlikee/octicons-vue/icons/check'
 
 ## Framework-independent core
 
-`@onlikee/octicons` provides SVG data, `toSVG()`, `createElement()` and original SVG assets without framework runtime dependencies. See the [core package documentation](https://github.com/onlikee/octicons-vue/tree/main/packages/octicons).
+`@onlikee/octicons` provides SVG data, `toSVG()`, `createElement()` and original SVG assets without framework runtime dependencies. See the [core package documentation](https://github.com/onlikee/octicons/tree/main/packages/octicons).
 
 ## Development
 
@@ -76,7 +78,7 @@ npm run build
 npm test
 ```
 
-Run `npm run test:browser` and open the printed local URL for browser verification. To refresh the checked-in upstream snapshot, run `npm run sync:octicons -- --source <octicons checkout>` followed by `npm run generate`. Generated modules are ignored by Git. Builds and type checks generate them automatically; tests build both packages first. Use `npm run generate:check` to compare existing generated files without rewriting them.
+Run `npm run test:browser` and open the printed local URL for browser verification. Generated modules are ignored by Git. Builds and type checks generate them automatically; tests build both packages first. Use `npm run generate:check` to compare existing generated files without rewriting them.
 
 Original SVGs are stored in the root `icons/` directory. `icons/icon-metadata.json` defines aliases and protected geometry, `icons/upstream.json` records the source version and commit, and `icons/LICENSE.octicons` contains the upstream license.
 

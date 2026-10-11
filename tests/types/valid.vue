@@ -5,7 +5,13 @@ import DeepAgentIcon from '../../packages/octicons-vue/src/__generated__/icons/a
 
 <template>
   <AccessibilityInsetIcon :size="24" fill="red" title="Accessibility" vertical-align="middle" />
-  <AgentIcon size="small" aria-label="Agent" :tabindex="0" class="custom" :style="{ color: 'red' }" />
+  <AgentIcon
+    size="small"
+    aria-label="Agent"
+    :tabindex="0"
+    class="custom"
+    :style="{ color: 'red' }"
+  />
   <AgentIcon size="medium" />
   <DeepAgentIcon size="large" />
   <!-- @vue-expect-error CSS lengths are outside the public size contract. -->

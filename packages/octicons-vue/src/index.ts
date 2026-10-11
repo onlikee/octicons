@@ -1,3 +1,3 @@
-export type { IconProps } from './createIconComponent'
+export type { IconProps } from './createIconComponent.js'
 export type { IconSize } from '@onlikee/octicons'
-export * from './__generated__'
+export * from './__generated__/index.js'

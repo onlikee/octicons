@@ -5,14 +5,14 @@
   "type": "module",
   "license": "MIT",
   "author": "UnderHear",
-  "homepage": "https://github.com/onlikee/octicons-vue#readme",
+  "homepage": "https://github.com/onlikee/octicons#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onlikee/octicons-vue.git",
+    "url": "git+https://github.com/onlikee/octicons.git",
     "directory": "packages/octicons-vue"
   },
   "bugs": {
-    "url": "https://github.com/onlikee/octicons-vue/issues"
+    "url": "https://github.com/onlikee/octicons/issues"
   },
   "keywords": [
     "octicons",

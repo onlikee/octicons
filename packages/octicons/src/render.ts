@@ -1,22 +1,29 @@
-import type { IconDefinition, IconNode, IconOptions, IconSize, SvgAttributes } from './types'
+import type { IconDefinition, IconNode, IconOptions, IconSize, SvgAttributes } from './types.js'
 
 const namespace = 'http://www.w3.org/2000/svg'
 const sizes = { small: 16, medium: 32, large: 64 }
 
 export function resolveIcon(icon: IconDefinition, size: IconSize = 16) {
   const height = typeof size === 'number' ? size : sizes[size]
-  if (!Number.isFinite(height) || height < 0) throw new RangeError('size must be a nonnegative finite number or small/medium/large')
-  const heights = Object.keys(icon.heights).map(Number).sort((a, b) => a - b)
-  const naturalHeight = heights.reduce((selected, current) => current <= height ? current : selected, heights[0])
+  if (!Number.isFinite(height) || height < 0)
+    throw new RangeError('size must be a nonnegative finite number or small/medium/large')
+  const heights = Object.keys(icon.heights)
+    .map(Number)
+    .sort((a, b) => a - b)
+  const naturalHeight = heights.reduce(
+    (selected, current) => (current <= height ? current : selected),
+    heights[0],
+  )
   const natural = icon.heights[naturalHeight]
-  return { ...natural, height, width: height * natural.width / naturalHeight, naturalHeight }
+  return { ...natural, height, width: (height * natural.width) / naturalHeight, naturalHeight }
 }
 
 function attributes(icon: IconDefinition, options: IconOptions): SvgAttributes {
   const resolved = resolveIcon(icon, options.size)
   const attrs = options.attrs ?? {}
   const labelled = attrs['aria-label'] || attrs['aria-labelledby']
-  const hidden = attrs['aria-hidden'] === undefined ? labelled ? undefined : 'true' : attrs['aria-hidden']
+  const hidden =
+    attrs['aria-hidden'] === undefined ? (labelled ? undefined : 'true') : attrs['aria-hidden']
   return {
     xmlns: namespace,
     'data-component': 'Octicon',
@@ -35,11 +42,23 @@ function attributes(icon: IconDefinition, options: IconOptions): SvgAttributes {
   }
 }
 
-const escape = (value: string) => value.replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]!)
-const serializeAttributes = (attrs: SvgAttributes) => Object.entries(attrs)
-  .filter(([, value]) => value != null)
-  .map(([name, value]) => ` ${name}="${escape(String(value))}"`).join('')
-const serializeNode = (node: IconNode): string => `<${node.tag}${serializeAttributes(node.attrs)}>${node.children.map(serializeNode).join('')}</${node.tag}>`
+function nodeAttributes(node: IconNode) {
+  return node.attrs.fill === 'currentColor' ? { ...node.attrs, fill: 'inherit' } : node.attrs
+}
+
+const escape = (value: string) =>
+  value.replace(
+    /[&<>"']/g,
+    (character) =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]!,
+  )
+const serializeAttributes = (attrs: SvgAttributes) =>
+  Object.entries(attrs)
+    .filter(([, value]) => value != null)
+    .map(([name, value]) => ` ${name}="${escape(String(value))}"`)
+    .join('')
+const serializeNode = (node: IconNode): string =>
+  `<${node.tag}${serializeAttributes(nodeAttributes(node))}>${node.children.map(serializeNode).join('')}</${node.tag}>`
 
 export function toSVG(icon: IconDefinition, options: IconOptions = {}): string {
   const { nodes } = resolveIcon(icon, options.size)
@@ -47,10 +66,15 @@ export function toSVG(icon: IconDefinition, options: IconOptions = {}): string {
   return `<svg${serializeAttributes(attributes(icon, options))}>${title}${nodes.map(serializeNode).join('')}</svg>`
 }
 
-export function createElement(icon: IconDefinition, options: IconOptions = {}, ownerDocument: Document = document): SVGSVGElement {
+export function createElement(
+  icon: IconDefinition,
+  options: IconOptions = {},
+  ownerDocument: Document = document,
+): SVGSVGElement {
   const createNode = (node: IconNode): Element => {
     const element = ownerDocument.createElementNS(namespace, node.tag)
-    for (const [name, value] of Object.entries(node.attrs)) element.setAttribute(name, value)
+    for (const [name, value] of Object.entries(nodeAttributes(node)))
+      element.setAttribute(name, value)
     for (const child of node.children) element.appendChild(createNode(child))
     return element
   }

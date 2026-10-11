@@ -6,10 +6,10 @@ English | [简体中文](./README.zh-CN.md)
 
 ## Packages
 
-| Package | Description | Documentation |
-| --- | --- | --- |
-| `@onlikee/octicons` | SVG data, string and native DOM rendering, original SVG assets | [Core](./packages/octicons/README.md) |
-| `@onlikee/octicons-vue` | Vue 3.3+ icon components | [Vue](./packages/octicons-vue/README.md) |
+| Package                 | Description                                                    | Documentation                            |
+| ----------------------- | -------------------------------------------------------------- | ---------------------------------------- |
+| `@onlikee/octicons`     | SVG data, string and native DOM rendering, original SVG assets | [Core](./packages/octicons/README.md)    |
+| `@onlikee/octicons-vue` | Vue 3.3+ icon components                                       | [Vue](./packages/octicons-vue/README.md) |
 
 Install the package you use:
 
@@ -24,7 +24,7 @@ The display height defaults to 16. Sizes accept numbers or `small`, `medium`, `l
 
 ```text
 icons/                             Original SVGs, metadata, source record and upstream license
-scripts/                           Synchronization, validation, generation and SVG asset build
+scripts/                           Validation, generation and SVG asset build
 packages/
   octicons/
     src/                           Types, size selection and native rendering
@@ -41,19 +41,22 @@ The root package is private and manages npm workspaces. Generated TypeScript mod
 
 ## Development
 
-Use Node 22.12 or later for the Vite 7 development tools. Run commands from the repository root:
+Use Node 22.13 or later for the ESLint 10 and Vite 7 development tools. Run commands from the repository root:
 
 ```sh
 npm install
+npm run lint
+npm run format:check
 npm run typecheck
 npm run build
 npm test
 ```
 
-Refresh the upstream snapshot explicitly, then regenerate:
+ESLint checks JavaScript, TypeScript and Vue files; Prettier checks formatting separately. Use `npm run lint:fix` or `npm run format` to apply fixes. Generated files, build output and the upstream icon snapshot are excluded. Existing formatting differences may be reported; `endOfLine: auto` preserves checkout line endings.
+
+Regenerate source from the checked-in icon snapshot:
 
 ```sh
-npm run sync:octicons -- --source <octicons checkout>
 npm run generate
 npm run generate:check
 ```

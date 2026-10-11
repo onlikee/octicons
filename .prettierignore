@@ -1,0 +1,9 @@
+node_modules/
+**/dist/
+**/generated/
+**/__generated__/
+
+# Preserve the upstream snapshot and generated attribution copies.
+icons/
+packages/octicons/SOURCE.json
+package-lock.json

@@ -10,13 +10,22 @@ const iconsDir = resolve(srcDir, '__generated__/icons')
 
 export default defineConfig({
   root: rootDir,
-  plugins: [dts({ tsconfigPath: resolve(rootDir, 'tsconfig.json'), entryRoot: srcDir, include: [resolve(srcDir, '**/*.ts')] })],
+  plugins: [
+    dts({
+      tsconfigPath: resolve(rootDir, 'tsconfig.json'),
+      entryRoot: srcDir,
+      include: [resolve(srcDir, '**/*.ts')],
+    }),
+  ],
   build: {
     lib: {
       entry: {
         index: resolve(srcDir, 'index.ts'),
-        ...Object.fromEntries(readdirSync(iconsDir).filter((file) => file.endsWith('.ts'))
-          .map((file) => [`icons/${basename(file, '.ts')}`, resolve(iconsDir, file)])),
+        ...Object.fromEntries(
+          readdirSync(iconsDir)
+            .filter((file) => file.endsWith('.ts'))
+            .map((file) => [`icons/${basename(file, '.ts')}`, resolve(iconsDir, file)]),
+        ),
       },
       formats: ['es'],
       fileName: (_format, entryName) => `${entryName}.js`,
